@@ -1,0 +1,1146 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    -webkit-tap-highlight-color: transparent;
+}
+
+html,
+body {
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    background: #050509;
+    color: #fff;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+button,
+input {
+    font: inherit;
+}
+
+button {
+    border: 0;
+    color: white;
+    cursor: pointer;
+}
+
+.hidden {
+    display: none !important;
+}
+
+/* =========================
+   APP
+========================= */
+
+#app {
+    width: 100vw;
+    height: 100vh;
+    position: relative;
+    overflow: hidden;
+}
+
+/* =========================
+   MAIN MENU
+========================= */
+
+.screen {
+    width: 100%;
+    height: 100%;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+}
+
+.menu-bg-effects {
+    position: absolute;
+    inset: 0;
+    overflow: hidden;
+    background:
+        radial-gradient(circle at 20% 30%, #29104f 0%, transparent 35%),
+        radial-gradient(circle at 80% 70%, #102d55 0%, transparent 40%),
+        #050509;
+}
+
+.grid-bg {
+    position: absolute;
+    inset: 0;
+    opacity: .2;
+    background-image:
+        linear-gradient(rgba(255,255,255,.08) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,.08) 1px, transparent 1px);
+    background-size: 45px 45px;
+    transform: perspective(500px) rotateX(55deg) scale(1.4);
+    transform-origin: center bottom;
+}
+
+.orb {
+    position: absolute;
+    width: 220px;
+    height: 220px;
+    border-radius: 50%;
+    filter: blur(50px);
+    opacity: .45;
+    animation: orbFloat 6s infinite alternate ease-in-out;
+}
+
+.orb-1 {
+    left: -80px;
+    top: 10%;
+    background: #6d1cff;
+}
+
+.orb-2 {
+    right: -80px;
+    bottom: 10%;
+    background: #00bfff;
+    animation-delay: -3s;
+}
+
+@keyframes orbFloat {
+    from {
+        transform: translateY(-20px);
+    }
+
+    to {
+        transform: translateY(30px);
+    }
+}
+
+.menu-card {
+    position: relative;
+    z-index: 2;
+    width: min(92vw, 560px);
+    padding: 28px;
+    border: 1px solid rgba(255,255,255,.15);
+    border-radius: 28px;
+    text-align: center;
+    background: rgba(10,10,18,.82);
+    backdrop-filter: blur(20px);
+    box-shadow:
+        0 25px 80px rgba(0,0,0,.65),
+        inset 0 1px rgba(255,255,255,.08);
+}
+
+.game-symbol {
+    font-size: 60px;
+    margin-bottom: 8px;
+    filter: drop-shadow(0 0 18px #7d39ff);
+}
+
+.menu-card h1 {
+    font-size: clamp(28px, 6vw, 48px);
+    letter-spacing: 5px;
+    font-weight: 900;
+}
+
+.subtitle {
+    margin-top: 5px;
+    color: #a8a8bd;
+    letter-spacing: 4px;
+    font-size: 12px;
+}
+
+.mode-title {
+    margin: 25px 0 12px;
+    font-size: 11px;
+    color: #77778c;
+    letter-spacing: 3px;
+}
+
+.mode-buttons {
+    display: grid;
+    gap: 10px;
+}
+
+.mode-btn {
+    min-height: 72px;
+    display: grid;
+    grid-template-columns: 58px 1fr;
+    grid-template-rows: 1fr 1fr;
+    align-items: center;
+    text-align: left;
+    padding: 10px 16px;
+    border-radius: 17px;
+    background: linear-gradient(
+        135deg,
+        rgba(255,255,255,.09),
+        rgba(255,255,255,.025)
+    );
+    border: 1px solid rgba(255,255,255,.1);
+    transition: .2s;
+}
+
+.mode-btn:hover,
+.mode-btn:active {
+    transform: scale(.98);
+    border-color: rgba(170,90,255,.7);
+    box-shadow: 0 0 25px rgba(130,40,255,.25);
+}
+
+.mode-icon {
+    grid-row: 1 / 3;
+    font-size: 30px;
+    text-align: center;
+}
+
+.mode-name {
+    font-weight: 900;
+    letter-spacing: 1px;
+}
+
+.mode-btn small {
+    color: #8f8fa0;
+    font-size: 11px;
+}
+
+.menu-message {
+    margin-top: 15px;
+    color: #77778c;
+    font-size: 12px;
+}
+
+/* =========================
+   LOBBY
+========================= */
+
+.lobby-card {
+    width: min(92vw, 450px);
+    padding: 30px;
+    border-radius: 26px;
+    text-align: center;
+    background: rgba(12,12,20,.9);
+    border: 1px solid rgba(255,255,255,.13);
+    box-shadow: 0 30px 80px rgba(0,0,0,.7);
+}
+
+.lobby-icon {
+    font-size: 45px;
+}
+
+.lobby-card h2 {
+    margin: 10px 0;
+    letter-spacing: 3px;
+}
+
+.lobby-card p {
+    color: #9292a5;
+    font-size: 13px;
+    margin-bottom: 20px;
+}
+
+.lobby-card input {
+    width: 100%;
+    margin-bottom: 10px;
+    padding: 14px;
+    border-radius: 12px;
+    border: 1px solid rgba(255,255,255,.12);
+    outline: none;
+    background: rgba(255,255,255,.06);
+    color: white;
+}
+
+.lobby-actions {
+    display: grid;
+    gap: 9px;
+    margin-top: 5px;
+}
+
+.premium-btn {
+    padding: 14px 20px;
+    border-radius: 13px;
+    font-weight: 900;
+    letter-spacing: 1px;
+    background: linear-gradient(
+        135deg,
+        #762cff,
+        #b52cff
+    );
+    box-shadow:
+        0 8px 25px rgba(130,40,255,.35),
+        inset 0 1px rgba(255,255,255,.25);
+    transition: .2s;
+}
+
+.premium-btn:active {
+    transform: scale(.96);
+}
+
+.lobby-message {
+    margin: 15px 0;
+    color: #89899c;
+    font-size: 12px;
+}
+
+.back-btn {
+    background: transparent;
+    color: #aaa;
+    padding: 8px;
+}
+
+/* =========================
+   GAME
+========================= */
+
+.game-screen {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    background: #03040a;
+}
+
+.game-topbar {
+    position: absolute;
+    z-index: 20;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 55px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 18px;
+    background: rgba(5,5,12,.78);
+    border-bottom: 1px solid rgba(255,255,255,.08);
+    backdrop-filter: blur(12px);
+}
+
+.game-logo {
+    font-weight: 900;
+    letter-spacing: 2px;
+    font-size: 13px;
+}
+
+.game-status {
+    color: #58ff9b;
+    font-size: 11px;
+}
+
+.level-box {
+    text-align: center;
+}
+
+.level-box small {
+    display: block;
+    font-size: 8px;
+    color: #777;
+}
+
+.level-box strong {
+    font-size: 19px;
+}
+
+/* =========================
+   PHOTO UPLOAD
+========================= */
+
+.character-upload {
+    position: absolute;
+    z-index: 25;
+    top: 62px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    gap: 8px;
+}
+
+.upload-box {
+    min-width: 115px;
+    padding: 7px 12px;
+    border-radius: 12px;
+    text-align: center;
+    background: rgba(10,10,18,.78);
+    border: 1px solid rgba(255,255,255,.13);
+    box-shadow: 0 5px 20px rgba(0,0,0,.35);
+}
+
+.upload-box input {
+    display: none;
+}
+
+.upload-icon {
+    display: inline-block;
+    font-size: 18px;
+}
+
+.upload-title {
+    display: block;
+    font-size: 9px;
+    font-weight: 900;
+}
+
+.upload-box small {
+    display: block;
+    color: #777;
+    font-size: 7px;
+}
+
+/* =========================
+   HEALTH
+========================= */
+
+.health-area {
+    position: absolute;
+    z-index: 15;
+    top: 112px;
+    left: 3%;
+    right: 3%;
+    display: grid;
+    grid-template-columns: 1fr 55px 1fr;
+    gap: 10px;
+    align-items: center;
+}
+
+.fighter-label {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 11px;
+}
+
+.fighter-avatar {
+    font-size: 22px;
+}
+
+.fighter-label b {
+    margin-left: auto;
+}
+
+.health-track {
+    height: 10px;
+    margin-top: 6px;
+    overflow: hidden;
+    border-radius: 20px;
+    background: rgba(255,255,255,.1);
+    border: 1px solid rgba(255,255,255,.1);
+}
+
+.health-fill {
+    width: 100%;
+    height: 100%;
+    transition: width .3s ease;
+}
+
+.player-health {
+    background: linear-gradient(
+        90deg,
+        #00ff88,
+        #00d9ff
+    );
+}
+
+.enemy-health {
+    background: linear-gradient(
+        90deg,
+        #ff3b62,
+        #ff8a00
+    );
+}
+
+.vs-badge {
+    text-align: center;
+    font-weight: 900;
+    font-size: 13px;
+    color: #ff4b73;
+}
+
+/* =========================
+   ARENA
+========================= */
+
+.arena {
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    overflow: hidden;
+    background:
+        radial-gradient(
+            ellipse at center 45%,
+            #18204a 0%,
+            #080a18 45%,
+            #020308 100%
+        );
+}
+
+.arena-sky {
+    position: absolute;
+    inset: 0;
+    background:
+        radial-gradient(
+            circle at 50% 35%,
+            rgba(0,200,255,.12),
+            transparent 30%
+        );
+}
+
+.arena-grid {
+    position: absolute;
+    left: -20%;
+    right: -20%;
+    bottom: -25%;
+    height: 65%;
+    background-image:
+        linear-gradient(rgba(0,200,255,.14) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(0,200,255,.14) 1px, transparent 1px);
+    background-size: 55px 35px;
+    transform: perspective(350px) rotateX(58deg);
+    transform-origin: center bottom;
+}
+
+.energy-line {
+    position: absolute;
+    left: 10%;
+    right: 10%;
+    bottom: 22%;
+    height: 2px;
+    background: #00d9ff;
+    box-shadow:
+        0 0 12px #00d9ff,
+        0 0 30px #0077ff;
+}
+
+.light-beam {
+    position: absolute;
+    top: -10%;
+    width: 18%;
+    height: 80%;
+    opacity: .12;
+    filter: blur(25px);
+    transform: rotate(15deg);
+    background: #7d35ff;
+}
+
+.beam-left {
+    left: 10%;
+}
+
+.beam-right {
+    right: 10%;
+    transform: rotate(-15deg);
+    background: #00aaff;
+}
+
+/* =========================
+   FIGHTERS
+========================= */
+
+.fighter {
+    position: absolute;
+    z-index: 8;
+    bottom: 23%;
+    width: 170px;
+    height: 190px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.fighter-one {
+    left: 13%;
+}
+
+.fighter-two {
+    right: 13%;
+}
+
+.fighter-shadow {
+    position: absolute;
+    bottom: 5px;
+    width: 110px;
+    height: 22px;
+    border-radius: 50%;
+    background: rgba(0,0,0,.7);
+    filter: blur(8px);
+}
+
+.fighter-character {
+    position: relative;
+    z-index: 2;
+    width: 130px;
+    height: 150px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 95px;
+    filter: drop-shadow(0 15px 20px rgba(0,0,0,.7));
+}
+
+.fighter-character img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    border-radius: 18px;
+    user-select: none;
+    pointer-events: none;
+}
+
+.center-vs {
+    position: absolute;
+    z-index: 5;
+    left: 50%;
+    top: 53%;
+    transform: translate(-50%, -50%);
+    font-size: 20px;
+    font-weight: 900;
+    color: rgba(255,255,255,.35);
+}
+
+/* =========================
+   ATTACK ANIMATIONS
+========================= */
+
+.punch-animation {
+    animation: punch .45s ease;
+}
+
+.kick-animation {
+    animation: kick .55s ease;
+}
+
+.special-animation {
+    animation: special .7s ease;
+}
+
+.enemy-attack {
+    animation: enemyAttack .55s ease;
+}
+
+@keyframes punch {
+    0%,100% { transform: translateX(0); }
+    40% { transform: translateX(55px) scale(1.08); }
+}
+
+@keyframes kick {
+    0%,100% { transform: translateX(0) rotate(0); }
+    40% { transform: translateX(55px) rotate(-8deg) scale(1.08); }
+}
+
+@keyframes special {
+    0% { transform: scale(1); }
+    30% { transform: scale(1.18); }
+    55% { transform: translateX(60px) scale(1.12); }
+    100% { transform: scale(1); }
+}
+
+@keyframes enemyAttack {
+    0%,100% { transform: translateX(0); }
+    45% { transform: translateX(-55px) scale(1.08); }
+}
+
+/* =========================
+   HIT VFX
+========================= */
+
+.hit-vfx {
+    position: absolute;
+    z-index: 30;
+    left: 50%;
+    top: 53%;
+    width: 25px;
+    height: 25px;
+    border-radius: 50%;
+    opacity: 0;
+    pointer-events: none;
+}
+
+.hit-vfx.active {
+    animation: hitFlash .55s ease;
+}
+
+@keyframes hitFlash {
+    0% {
+        opacity: 0;
+        transform: translate(-50%,-50%) scale(.2);
+        box-shadow: 0 0 0 transparent;
+    }
+
+    30% {
+        opacity: 1;
+        transform: translate(-50%,-50%) scale(4);
+        box-shadow:
+            0 0 25px #fff,
+            0 0 55px #ff3c70,
+            0 0 100px #ff9d00;
+    }
+
+    100% {
+        opacity: 0;
+        transform: translate(-50%,-50%) scale(8);
+    }
+}
+
+.screen-shake {
+    animation: shake .18s linear;
+}
+
+@keyframes shake {
+    0% { transform: translate(0); }
+    25% { transform: translate(5px,-3px); }
+    50% { transform: translate(-5px,3px); }
+    75% { transform: translate(3px,2px); }
+    100% { transform: translate(0); }
+}
+
+/* =========================
+   DAMAGE / COMBO
+========================= */
+
+.damage-text {
+    position: absolute;
+    z-index: 40;
+    left: 62%;
+    top: 45%;
+    opacity: 0;
+    font-size: 30px;
+    font-weight: 900;
+    color: #ff416c;
+    text-shadow: 0 0 15px #ff1744;
+    pointer-events: none;
+}
+
+.damage-text.show {
+    animation: damageFloat .6s ease;
+}
+
+@keyframes damageFloat {
+    0% {
+        opacity: 0;
+        transform: translateY(20px) scale(.5);
+    }
+
+    30% {
+        opacity: 1;
+        transform: translateY(0) scale(1.2);
+    }
+
+    100% {
+        opacity: 0;
+        transform: translateY(-55px) scale(1);
+    }
+}
+
+.combo-display {
+    position: absolute;
+    z-index: 35;
+    left: 50%;
+    top: 25%;
+    transform: translateX(-50%);
+    color: #ffd84d;
+    font-size: 18px;
+    font-weight: 900;
+    text-shadow: 0 0 20px #ff7800;
+}
+
+/* =========================
+   GAME INFO
+========================= */
+
+.game-info {
+    position: absolute;
+    z-index: 20;
+    left: 50%;
+    bottom: 88px;
+    transform: translateX(-50%);
+    display: flex;
+    gap: 8px;
+}
+
+.info-box {
+    min-width: 65px;
+    padding: 6px 10px;
+    text-align: center;
+    border-radius: 9px;
+    background: rgba(5,5,12,.7);
+    border: 1px solid rgba(255,255,255,.09);
+}
+
+.info-box small {
+    display: block;
+    color: #777;
+    font-size: 7px;
+}
+
+.info-box strong {
+    font-size: 13px;
+}
+
+/* =========================
+   ATTACK CONTROLS
+========================= */
+
+.controls {
+    position: absolute;
+    z-index: 50;
+    bottom: 8px;
+    display: flex;
+    align-items: center;
+    gap: 9px;
+}
+
+.player1-controls {
+    left: 12px;
+}
+
+.player2-controls {
+    right: 12px;
+}
+
+.controls-title {
+    font-size: 9px;
+    color: #aaa;
+    writing-mode: vertical-rl;
+    transform: rotate(180deg);
+}
+
+.attack-btn {
+    width: 65px;
+    height: 65px;
+    border-radius: 50%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 2px;
+    border: 2px solid rgba(255,255,255,.2);
+    box-shadow:
+        0 7px 20px rgba(0,0,0,.55),
+        inset 0 1px rgba(255,255,255,.3);
+    transition: .12s;
+}
+
+.attack-btn span {
+    font-size: 22px;
+}
+
+.attack-btn b {
+    font-size: 7px;
+    letter-spacing: 1px;
+}
+
+.attack-btn:active {
+    transform: scale(.88);
+    box-shadow:
+        0 0 25px rgba(255,255,255,.3),
+        inset 0 0 20px rgba(255,255,255,.15);
+}
+
+.punch-btn {
+    background: radial-gradient(
+        circle at 35% 30%,
+        #ff6b82,
+        #b8002e
+    );
+}
+
+.kick-btn {
+    background: radial-gradient(
+        circle at 35% 30%,
+        #ffb84d,
+        #b94b00
+    );
+}
+
+.special-btn {
+    background: radial-gradient(
+        circle at 35% 30%,
+        #b56cff,
+        #5410b9
+    );
+}
+
+/* =========================
+   BOTTOM
+========================= */
+
+.bottom-controls {
+    position: absolute;
+    z-index: 60;
+    right: 12px;
+    top: 8px;
+    display: flex;
+    gap: 7px;
+}
+
+.small-btn {
+    padding: 8px 12px;
+    border-radius: 9px;
+    background: rgba(255,255,255,.08);
+    border: 1px solid rgba(255,255,255,.1);
+    color: #ddd;
+    font-size: 9px;
+}
+
+.danger-btn {
+    color: #ff667f;
+}
+
+.ai-status {
+    position: absolute;
+    z-index: 20;
+    right: 18px;
+    bottom: 82px;
+    font-size: 9px;
+    color: #7dffb0;
+}
+
+/* =========================
+   OVERLAYS
+========================= */
+
+.overlay {
+    position: fixed;
+    z-index: 100;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(0,0,0,.72);
+    backdrop-filter: blur(10px);
+}
+
+.overlay-card,
+.result-card {
+    width: min(90vw, 390px);
+    padding: 30px;
+    text-align: center;
+    border-radius: 25px;
+    background: rgba(10,10,18,.94);
+    border: 1px solid rgba(255,255,255,.15);
+    box-shadow: 0 30px 90px rgba(0,0,0,.8);
+}
+
+.overlay-icon,
+.result-icon {
+    font-size: 55px;
+}
+
+.overlay-card h2,
+.result-title {
+    margin: 10px 0 20px;
+    font-weight: 900;
+    letter-spacing: 3px;
+}
+
+.overlay-card .premium-btn,
+.result-card .premium-btn {
+    width: 100%;
+    margin-top: 8px;
+}
+
+.overlay-card .small-btn,
+.result-card .small-btn {
+    margin-top: 8px;
+}
+
+/* =========================
+   BOOYAAH
+========================= */
+
+.booyah-screen {
+    position: fixed;
+    z-index: 200;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    background:
+        radial-gradient(
+            circle at center,
+            #24104c,
+            #05030c 65%
+        );
+}
+
+.booyah-content {
+    position: relative;
+    z-index: 5;
+    text-align: center;
+}
+
+.booyah-trophy {
+    font-size: 80px;
+    animation: trophy .8s infinite alternate;
+}
+
+@keyframes trophy {
+    from {
+        transform: translateY(0) rotate(-5deg);
+    }
+
+    to {
+        transform: translateY(-12px) rotate(5deg);
+    }
+}
+
+.booyah-text {
+    font-size: clamp(45px, 10vw, 90px);
+    font-weight: 1000;
+    letter-spacing: 5px;
+    background: linear-gradient(
+        90deg,
+        #ffe259,
+        #ff7a00,
+        #fff
+    );
+    -webkit-background-clip: text;
+    color: transparent;
+    text-shadow: 0 0 35px rgba(255,150,0,.45);
+    animation: booyahPulse 1s infinite alternate;
+}
+
+@keyframes booyahPulse {
+    from {
+        transform: scale(1);
+    }
+
+    to {
+        transform: scale(1.06);
+    }
+}
+
+.booyah-content p {
+    color: #bbb;
+    letter-spacing: 4px;
+    margin: 10px 0;
+    font-size: 11px;
+}
+
+.booyah-content > strong {
+    display: block;
+    font-size: 20px;
+    letter-spacing: 6px;
+}
+
+.booyah-stats {
+    display: flex;
+    justify-content: center;
+    gap: 25px;
+    margin: 20px 0;
+}
+
+.booyah-stats span {
+    color: #777;
+    font-size: 9px;
+}
+
+.booyah-stats b {
+    display: block;
+    color: white;
+    font-size: 15px;
+    margin-top: 4px;
+}
+
+.booyah-content .premium-btn {
+    min-width: 220px;
+}
+
+.booyah-particles {
+    position: absolute;
+    inset: 0;
+    overflow: hidden;
+}
+
+.booyah-particles span {
+    position: absolute;
+    color: #ffd84d;
+    font-size: 18px;
+    animation: particle 4s linear infinite;
+}
+
+@keyframes particle {
+    0% {
+        opacity: 0;
+        transform: translateY(100px) rotate(0);
+    }
+
+    20% {
+        opacity: 1;
+    }
+
+    100% {
+        opacity: 0;
+        transform: translateY(-500px) rotate(360deg);
+    }
+}
+
+/* =========================
+   MOBILE LANDSCAPE
+========================= */
+
+@media (orientation: landscape) and (max-height: 600px) {
+
+    .game-topbar {
+        height: 42px;
+    }
+
+    .character-upload {
+        top: 47px;
+    }
+
+    .upload-box {
+        min-width: 95px;
+        padding: 4px 8px;
+    }
+
+    .health-area {
+        top: 88px;
+    }
+
+    .fighter {
+        bottom: 25%;
+        width: 140px;
+        height: 150px;
+    }
+
+    .fighter-character {
+        width: 105px;
+        height: 120px;
+        font-size: 75px;
+    }
+
+    .game-info {
+        bottom: 76px;
+    }
+
+    .attack-btn {
+        width: 58px;
+        height: 58px;
+    }
+
+    .attack-btn span {
+        font-size: 19px;
+    }
+
+    .ai-status {
+        bottom: 68px;
+    }
+}
+
+/* =========================
+   PORTRAIT NOTICE
+========================= */
+
+@media (orientation: portrait) {
+
+    .game-screen::before {
+        content: "↻  ROTATE YOUR PHONE";
+        position: absolute;
+        z-index: 999;
+        inset: 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: #050509;
+        color: white;
+        font-size: 18px;
+        font-weight: 900;
+        letter-spacing: 2px;
+    }
+}

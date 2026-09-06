@@ -1,0 +1,724 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width,
+          initial-scale=1.0,
+          maximum-scale=1.0,
+          user-scalable=no">
+
+    <meta name="theme-color" content="#050509">
+
+    <title>SHADOW CLASH — 3D FIGHT</title>
+
+    <link rel="stylesheet" href="./style.css">
+</head>
+
+<body>
+
+<div id="app">
+
+<!-- ==================================================
+     MAIN MENU
+================================================== -->
+
+<section id="mainMenu" class="screen">
+
+    <div class="menu-bg-effects">
+        <div class="orb orb-1"></div>
+        <div class="orb orb-2"></div>
+        <div class="grid-bg"></div>
+    </div>
+
+    <div class="menu-card">
+
+        <div class="game-symbol">🥷🏻</div>
+
+        <h1>SHADOW CLASH</h1>
+
+        <p class="subtitle">
+            3D FIGHTING ARENA
+        </p>
+
+        <div class="mode-title">
+            SELECT GAME MODE
+        </div>
+
+        <div class="mode-buttons">
+
+            <button id="aiModeBtn" class="mode-btn">
+                <span class="mode-icon">🤖</span>
+                <span class="mode-name">AI MATCH</span>
+                <small>Fight against AI</small>
+            </button>
+
+            <button id="localModeBtn" class="mode-btn">
+                <span class="mode-icon">👥</span>
+                <span class="mode-name">2 PLAYER</span>
+                <small>Same device</small>
+            </button>
+
+            <button id="onlineModeBtn" class="mode-btn">
+                <span class="mode-icon">🌐</span>
+                <span class="mode-name">ONLINE</span>
+                <small>Play online</small>
+            </button>
+
+        </div>
+
+        <div id="menuMessage" class="menu-message">
+            Choose your battle mode
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- ==================================================
+     ONLINE LOBBY
+================================================== -->
+
+<section id="onlineLobby" class="screen hidden">
+
+    <div class="lobby-card">
+
+        <div class="lobby-icon">🌐</div>
+
+        <h2>ONLINE BATTLE</h2>
+
+        <p>Create a room or join your friend</p>
+
+        <input
+            id="playerName"
+            type="text"
+            maxlength="15"
+            placeholder="Player name"
+            autocomplete="off">
+
+        <input
+            id="roomId"
+            type="text"
+            maxlength="12"
+            placeholder="Room ID"
+            autocomplete="off">
+
+        <div class="lobby-actions">
+
+            <button id="createRoomBtn"
+                    class="premium-btn">
+                ⚔️ CREATE ROOM
+            </button>
+
+            <button id="joinRoomBtn"
+                    class="premium-btn">
+                🌐 JOIN ROOM
+            </button>
+
+        </div>
+
+        <div id="lobbyMessage"
+             class="lobby-message">
+            Enter your name to continue
+        </div>
+
+        <button id="backFromLobbyBtn"
+                class="back-btn">
+            ← BACK
+        </button>
+
+    </div>
+
+</section>
+
+
+<!-- ==================================================
+     GAME SCREEN
+================================================== -->
+
+<section id="gameScreen"
+         class="game-screen hidden">
+
+
+    <!-- TOP BAR -->
+
+    <header class="game-topbar">
+
+        <div class="game-logo">
+            ⚔️ SHADOW CLASH
+        </div>
+
+        <div class="game-status">
+
+            <span id="connectionDot">●</span>
+
+            <span id="connectionText">
+                LOCAL
+            </span>
+
+        </div>
+
+        <div class="level-box">
+
+            <small>LEVEL</small>
+
+            <strong id="levelNumber">
+                1
+            </strong>
+
+        </div>
+
+    </header>
+
+
+    <!-- ==================================================
+         PHOTO UPLOAD
+    ================================================== -->
+
+    <div class="character-upload">
+
+        <label class="upload-box">
+
+            <span class="upload-icon">
+                🥷🏻
+            </span>
+
+            <span class="upload-title">
+                PLAYER PHOTO
+            </span>
+
+            <small>
+                TAP TO UPLOAD
+            </small>
+
+            <input
+                id="playerPhotoInput"
+                type="file"
+                accept="image/*">
+
+        </label>
+
+
+        <label class="upload-box">
+
+            <span class="upload-icon">
+                🤖
+            </span>
+
+            <span class="upload-title">
+                ENEMY PHOTO
+            </span>
+
+            <small>
+                TAP TO UPLOAD
+            </small>
+
+            <input
+                id="enemyPhotoInput"
+                type="file"
+                accept="image/*">
+
+        </label>
+
+    </div>
+
+
+    <!-- ==================================================
+         HEALTH
+    ================================================== -->
+
+    <div class="health-area">
+
+
+        <!-- PLAYER -->
+
+        <div class="fighter-status player-status">
+
+            <div class="fighter-label">
+
+                <span class="fighter-avatar">
+                    🥷🏻
+                </span>
+
+                <strong id="player1Name">
+                    PLAYER 1
+                </strong>
+
+                <b id="player1HpText">
+                    100
+                </b>
+
+            </div>
+
+            <div class="health-track">
+
+                <div id="player1HpBar"
+                     class="health-fill player-health">
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <div class="vs-badge">
+            VS
+        </div>
+
+
+        <!-- ENEMY -->
+
+        <div class="fighter-status enemy-status">
+
+            <div class="fighter-label">
+
+                <span class="fighter-avatar">
+                    🤖
+                </span>
+
+                <strong id="player2Name">
+                    ENEMY
+                </strong>
+
+                <b id="player2HpText">
+                    100
+                </b>
+
+            </div>
+
+            <div class="health-track">
+
+                <div id="player2HpBar"
+                     class="health-fill enemy-health">
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- ==================================================
+         ARENA
+    ================================================== -->
+
+    <div id="arena"
+         class="arena">
+
+        <div class="arena-sky"></div>
+
+        <div class="light-beam beam-left"></div>
+
+        <div class="light-beam beam-right"></div>
+
+        <div class="arena-grid"></div>
+
+        <div class="energy-line"></div>
+
+
+        <!-- PLAYER -->
+
+        <div id="fighter1"
+             class="fighter fighter-one">
+
+            <div class="fighter-shadow"></div>
+
+            <div class="fighter-character">
+                🥷🏻
+            </div>
+
+        </div>
+
+
+        <!-- CENTER -->
+
+        <div class="center-vs">
+            VS
+        </div>
+
+
+        <!-- ENEMY -->
+
+        <div id="fighter2"
+             class="fighter fighter-two">
+
+            <div class="fighter-shadow"></div>
+
+            <div class="fighter-character">
+                🤖
+            </div>
+
+        </div>
+
+
+        <!-- HIT VFX -->
+
+        <div id="hitVfx"
+             class="hit-vfx">
+        </div>
+
+
+        <!-- DAMAGE -->
+
+        <div id="damageText"
+             class="damage-text">
+        </div>
+
+
+        <!-- COMBO -->
+
+        <div id="comboDisplay"
+             class="combo-display">
+        </div>
+
+    </div>
+
+
+    <!-- ==================================================
+         GAME INFO
+    ================================================== -->
+
+    <div class="game-info">
+
+        <div class="info-box">
+
+            <small>HITS</small>
+
+            <strong id="hits">
+                0
+            </strong>
+
+        </div>
+
+
+        <div class="info-box">
+
+            <small>COMBO</small>
+
+            <strong id="combo">
+                0
+            </strong>
+
+        </div>
+
+
+        <div class="info-box">
+
+            <small>MODE</small>
+
+            <strong id="modeDisplay">
+                AI
+            </strong>
+
+        </div>
+
+
+        <div class="info-box">
+
+            <small>LEVEL</small>
+
+            <strong id="levelInfo">
+                1 / 5
+            </strong>
+
+        </div>
+
+    </div>
+
+
+    <!-- ==================================================
+         PLAYER 1 CONTROLS
+    ================================================== -->
+
+    <div id="player1Controls"
+         class="controls player1-controls">
+
+        <div class="controls-title">
+            🥷🏻 PLAYER 1
+        </div>
+
+
+        <button id="p1PunchBtn"
+                class="attack-btn punch-btn">
+
+            <span>🥊</span>
+            <b>PUNCH</b>
+
+        </button>
+
+
+        <button id="p1KickBtn"
+                class="attack-btn kick-btn">
+
+            <span>🦵</span>
+            <b>KICK</b>
+
+        </button>
+
+
+        <button id="p1SpecialBtn"
+                class="attack-btn special-btn">
+
+            <span>⚡</span>
+            <b>SPECIAL</b>
+
+        </button>
+
+    </div>
+
+
+    <!-- ==================================================
+         PLAYER 2 CONTROLS
+    ================================================== -->
+
+    <div id="player2Controls"
+         class="controls player2-controls hidden">
+
+        <div class="controls-title">
+            🤖 PLAYER 2
+        </div>
+
+
+        <button id="p2PunchBtn"
+                class="attack-btn punch-btn">
+
+            <span>🥊</span>
+            <b>PUNCH</b>
+
+        </button>
+
+
+        <button id="p2KickBtn"
+                class="attack-btn kick-btn">
+
+            <span>🦵</span>
+            <b>KICK</b>
+
+        </button>
+
+
+        <button id="p2SpecialBtn"
+                class="attack-btn special-btn">
+
+            <span>⚡</span>
+            <b>SPECIAL</b>
+
+        </button>
+
+    </div>
+
+
+    <!-- ==================================================
+         BOTTOM CONTROLS
+    ================================================== -->
+
+    <div class="bottom-controls">
+
+        <button id="pauseBtn"
+                class="small-btn">
+            ⏸️ PAUSE
+        </button>
+
+        <button id="menuBtn"
+                class="small-btn danger-btn">
+            🏠 MENU
+        </button>
+
+    </div>
+
+
+    <!-- AI STATUS -->
+
+    <div id="aiStatus"
+         class="ai-status">
+        🤖 AI READY
+    </div>
+
+</section>
+
+
+<!-- ==================================================
+     PAUSE
+================================================== -->
+
+<section id="pauseScreen"
+         class="overlay hidden">
+
+    <div class="overlay-card">
+
+        <div class="overlay-icon">
+            ⏸️
+        </div>
+
+        <h2>GAME PAUSED</h2>
+
+        <button id="resumeBtn"
+                class="premium-btn">
+            ▶ RESUME
+        </button>
+
+        <button id="pauseMenuBtn"
+                class="small-btn">
+            🏠 MAIN MENU
+        </button>
+
+    </div>
+
+</section>
+
+
+<!-- ==================================================
+     VICTORY
+================================================== -->
+
+<section id="victoryScreen"
+         class="overlay hidden">
+
+    <div class="result-card victory-card">
+
+        <div class="result-icon">
+            🏆
+        </div>
+
+        <div class="result-title">
+            VICTORY
+        </div>
+
+        <p id="victoryMessage">
+            LEVEL CLEARED!
+        </p>
+
+        <div class="result-stats">
+
+            <span>
+                LEVEL
+                <b id="victoryLevel">1</b>
+            </span>
+
+            <span>
+                HITS
+                <b id="victoryHits">0</b>
+            </span>
+
+        </div>
+
+        <button id="nextLevelBtn"
+                class="premium-btn">
+            NEXT LEVEL →
+        </button>
+
+        <button id="victoryMenuBtn"
+                class="small-btn">
+            🏠 MENU
+        </button>
+
+    </div>
+
+</section>
+
+
+<!-- ==================================================
+     DEFEAT
+================================================== -->
+
+<section id="defeatScreen"
+         class="overlay hidden">
+
+    <div class="result-card defeat-card">
+
+        <div class="result-icon">
+            💀
+        </div>
+
+        <div class="result-title">
+            DEFEATED
+        </div>
+
+        <p>
+            The battle is over.
+        </p>
+
+        <button id="retryBtn"
+                class="premium-btn">
+            🔄 RETRY
+        </button>
+
+        <button id="defeatMenuBtn"
+                class="small-btn">
+            🏠 MENU
+        </button>
+
+    </div>
+
+</section>
+
+
+<!-- ==================================================
+     BOOYAAH
+================================================== -->
+
+<section id="booyahScreen"
+         class="booyah-screen hidden">
+
+    <div class="booyah-particles"></div>
+
+    <div class="booyah-content">
+
+        <div class="booyah-trophy">
+            🏆
+        </div>
+
+        <div class="booyah-text">
+            BOOYAAH!
+        </div>
+
+        <p>
+            ALL 5 LEVELS CLEARED
+        </p>
+
+        <strong>
+            CHAMPION
+        </strong>
+
+        <div class="booyah-stats">
+
+            <span>
+                LEVELS
+                <b>5 / 5</b>
+            </span>
+
+            <span>
+                STATUS
+                <b>WINNER</b>
+            </span>
+
+        </div>
+
+        <button id="booyahRestartBtn"
+                class="premium-btn">
+            🔥 PLAY AGAIN
+        </button>
+
+        <button id="booyahMenuBtn"
+                class="small-btn">
+            🏠 MAIN MENU
+        </button>
+
+    </div>
+
+</section>
+
+</div>
+
+
+<!-- ==================================================
+     JAVASCRIPT
+================================================== -->
+
+<script src="./script.js"></script>
+
+</body>
+</html>
